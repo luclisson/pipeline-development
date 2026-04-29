@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,8 +21,8 @@ public class ProductController {
     private final ProductDbService productDbService;
 
     @GetMapping("/getProduct/{id}")
-    public ResponseEntity getProduct(@PathVariable int id){
-        return ResponseEntity.ok(productDbService.getProductById(id));
+    public ResponseEntity<Optional<ProductDTO>> getProduct(@PathVariable("id") UUID id){
+        return ResponseEntity.ok(productDbService.getProductByPublicId(id));
     }
 
     @GetMapping("/getProducts")

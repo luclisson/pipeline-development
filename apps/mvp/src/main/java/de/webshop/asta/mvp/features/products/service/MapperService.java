@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class MapperService {
     public ProductDTO toDto(Product p){
         return new ProductDTO(
+                p.getPublicId(),
                 p.getName(),
                 p.getDescription(),
                 p.getImagePath(),

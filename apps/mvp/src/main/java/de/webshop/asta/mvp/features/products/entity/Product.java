@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -14,24 +16,27 @@ import lombok.NoArgsConstructor;
 public class Product {
     @Id
     @Column(name = "product_id")
-    int productId;
+    private int productId;
+
+    @Column(unique = true,nullable = false,updatable = false, name = "public_id")
+    private UUID publicId;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @Column(name = "description")
-    String description;
+    private String description;
 
     @Column(name = "image_path")
-    String imagePath;
+    private String imagePath;
 
     @Column(name = "price")
             //price in cents to avoid float calculations
-    int price;
+    private int price;
 
     @Column(name = "amount_in_stock")
-    int amountInStock;
+    private int amountInStock;
 
     @Column(name = "tag")
-    String tag;
+    private String tag;
 }
