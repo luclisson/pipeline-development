@@ -43,6 +43,7 @@ public class ProductDbService {
 
     public Product addProduct(ProductDTO dto){
         //eigentlich wollen wir nicht das gesamte product returnen, nur in dev
+        //test 2 repo setup
         return productRepository.save(mapper.toProduct(dto));
     }
 }
