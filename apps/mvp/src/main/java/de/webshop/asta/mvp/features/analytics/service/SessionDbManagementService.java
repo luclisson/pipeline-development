@@ -6,6 +6,8 @@ import de.webshop.asta.mvp.features.analytics.repository.AnalyticsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class SessionDbManagementService {
@@ -15,5 +17,8 @@ public class SessionDbManagementService {
     public Session addSessionObject(SessionDTO sessionDTO){
         //sollte nicht session nach aussen exposen, nur fuer dev aktuell
         return analyticsRepository.save(mapper.toSession(sessionDTO));
+    }
+    public Optional<SessionDTO> getSessionBySessionId(Long id){
+        return analyticsRepository.findSessionBySessionId(id).map(mapper::toDto);
     }
 }

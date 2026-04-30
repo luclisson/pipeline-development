@@ -18,6 +18,9 @@ public class ProductDbService {
     public Optional<ProductDTO> getProductByPublicId(UUID id){
         return productRepository.findProductByPublicId(id).map(mapper::toDto);
     }
+    public Optional<ProductDTO> getProductByProductId(Long id){
+        return productRepository.findProductByProductId(id).map(mapper::toDto);
+    }
     public List<ProductDTO> getProducts(){
         return productRepository.findAll().stream().map(mapper::toDto).toList();
     }
@@ -43,7 +46,6 @@ public class ProductDbService {
 
     public Product addProduct(ProductDTO dto){
         //eigentlich wollen wir nicht das gesamte product returnen, nur in dev
-        //test 2 repo setup
         return productRepository.save(mapper.toProduct(dto));
     }
 }

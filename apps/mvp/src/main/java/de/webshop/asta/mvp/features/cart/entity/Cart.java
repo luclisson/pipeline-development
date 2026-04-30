@@ -1,10 +1,12 @@
-package de.webshop.asta.mvp.features.analytics.entity;
+package de.webshop.asta.mvp.features.cart.entity;
 
+import de.webshop.asta.mvp.features.products.entity.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Generated;
+
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
