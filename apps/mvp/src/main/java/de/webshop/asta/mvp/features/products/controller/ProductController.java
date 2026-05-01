@@ -27,7 +27,7 @@ public class ProductController {
     public ResponseEntity getProducts(){
         return ResponseEntity.ok(productDbService.getProducts());
     }
-    @PatchMapping("setProductInactive/{publicId}")
+    @PatchMapping("/setProductInactive/{publicId}")
     public ResponseEntity<ProductDTO> setProductInactive(@PathVariable("publicId") UUID publicId){
         productDbService.setProductInactiveByPublicId(publicId);
         return ResponseEntity.ok(productDbService.getProductByPublicId(publicId).orElseThrow());
