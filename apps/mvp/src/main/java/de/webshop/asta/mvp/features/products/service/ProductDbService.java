@@ -3,6 +3,7 @@ package de.webshop.asta.mvp.features.products.service;
 import de.webshop.asta.mvp.features.products.dto.ProductDTO;
 import de.webshop.asta.mvp.features.products.entity.Product;
 import de.webshop.asta.mvp.features.products.repository.ProductRepository;
+import de.webshop.asta.mvp.common.ProductStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,8 +41,10 @@ public class ProductDbService {
         return mapper.toDto(current);
     }
 
-    public void deleteProductByPublicId(UUID id){
-        productRepository.deleteProductByPublicId(id);
+    public void setProductInactiveByPublicId(UUID publicId){
+        Product product = productRepository.findProductByPublicId(publicId).orElseThrow();
+        product.setStatus(ProductStatus.INACTIVE);
+        productRepository.save(product);
     }
 
     public Product addProduct(ProductDTO dto){

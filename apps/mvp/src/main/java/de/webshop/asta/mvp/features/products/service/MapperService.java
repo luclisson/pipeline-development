@@ -21,7 +21,8 @@ public class MapperService {
                 p.getImagePath(),
                 p.getPrice(),
                 p.getAmountInStock(),
-                p.getTag()
+                p.getTag(),
+                p.getStatus()
         );
     }
     public Product toProduct(ProductDTO dto){
@@ -32,6 +33,7 @@ public class MapperService {
         product.setAmountInStock(dto.getAmountInStock());
         product.setImagePath(dto.getImagePath());
         product.setTag(dto.getTag());
+        product.setStatus(dto.getStatus());
         return productRepository.save(product);
     }
 }

@@ -13,7 +13,11 @@ import java.util.UUID;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     Optional<Product> findProductByPublicId(UUID id);
-    void deleteProductByPublicId(UUID id);
+
+    @Transactional
+    default Product updateProductByPublicId(Product updatedProduct){
+        return save(updatedProduct);
+    };
 
     Optional<Product> findProductByProductId(Long id);
 

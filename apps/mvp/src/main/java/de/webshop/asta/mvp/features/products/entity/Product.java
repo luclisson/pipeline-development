@@ -1,5 +1,6 @@
 package de.webshop.asta.mvp.features.products.entity;
 
+import de.webshop.asta.mvp.common.ProductStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,4 +39,7 @@ public class Product {
 
     @Column(name = "tag")
     private String tag;
+
+    @Column
+    private ProductStatus status;
 }

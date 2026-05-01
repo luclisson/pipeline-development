@@ -1,5 +1,6 @@
 package de.webshop.asta.mvp.features.products.dto;
 
+import de.webshop.asta.mvp.common.ProductStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,5 @@ public class ProductDTO {
     int price;
     int amountInStock;
     String tag;
+    ProductStatus status;
 }
