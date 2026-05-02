@@ -26,7 +26,7 @@ public class AdminProductManagementController {
 
     @PostMapping("/deleteProduct/{id}")
     public ResponseEntity deleteProduct(@PathVariable("id") UUID publicId){
-        productDbService.deleteProductByPublicId(publicId);
+        productDbService.setProductInactiveByPublicId(publicId);
         return ResponseEntity.ok().build();
     }
 

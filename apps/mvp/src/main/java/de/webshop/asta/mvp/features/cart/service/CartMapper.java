@@ -16,11 +16,12 @@ public class CartMapper {
     private final SessionDbManagementService sessionDbManagementService;
 
     public CartDTO toDto(Cart cart){
-        UUID analyticsId = productDbService.getProductByProductId(cart.getProductId())
-                .orElseThrow().getPublicId();
-        // dont know if the throw here is good for error handling
-        UUID publicProductId = sessionDbManagementService.getSessionBySessionId(cart.getSessionId())
+        UUID analyticsId = sessionDbManagementService.getSessionBySessionId(cart.getSessionId())
                 .orElseThrow().getAnalyticsId();
+        // dont know if the throw here is good for error handling
+        UUID publicProductId = productDbService.getProductByProductId(cart.getProductId())
+                .orElseThrow().getPublicId();
+
        return new CartDTO(
                analyticsId,
                publicProductId,

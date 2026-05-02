@@ -11,6 +11,9 @@ import java.util.UUID;
 public interface AnalyticsRepository extends JpaRepository<Session,Long> {
     Optional<Session> findSessionBySessionId(Long id);
 
-    @Query("select s.sessionId from Session s where s.analyticsId = :analyticsId")
+    Optional<Session> findFirstSessionByAnalyticsId(UUID analyticsId);
+
+    @Query("select min(s.sessionId) from Session s where s.analyticsId = :analyticsId")
+
     Optional<Long> findSessionIdByAnalyticsId(@Param("analyticsId")UUID analyticsId);
 }

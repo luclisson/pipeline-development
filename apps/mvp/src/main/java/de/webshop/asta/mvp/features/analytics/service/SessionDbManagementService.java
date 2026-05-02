@@ -17,6 +17,12 @@ public class SessionDbManagementService {
 
     public Session addSessionObject(SessionDTO sessionDTO){
         //sollte nicht session nach aussen exposen, nur fuer dev aktuell
+        if (sessionDTO.getAnalyticsId() != null) {
+            Optional<Session> existingSession = analyticsRepository.findFirstSessionByAnalyticsId(sessionDTO.getAnalyticsId());
+            if (existingSession.isPresent()) {
+                return existingSession.get();
+            }
+        }
         return analyticsRepository.save(mapper.toSession(sessionDTO));
     }
     public Optional<SessionDTO> getSessionBySessionId(Long id){

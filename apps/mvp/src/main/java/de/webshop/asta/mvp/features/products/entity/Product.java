@@ -40,6 +40,7 @@ public class Product {
     @Column(name = "tag")
     private String tag;
 
-    @Column
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "product_status")
     private ProductStatus status;
 }

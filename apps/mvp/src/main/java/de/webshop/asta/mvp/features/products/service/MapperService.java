@@ -3,6 +3,7 @@ package de.webshop.asta.mvp.features.products.service;
 import de.webshop.asta.mvp.features.products.dto.ProductDTO;
 import de.webshop.asta.mvp.features.products.entity.Product;
 import de.webshop.asta.mvp.features.products.repository.ProductRepository;
+import de.webshop.asta.mvp.common.ProductStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,7 +34,8 @@ public class MapperService {
         product.setAmountInStock(dto.getAmountInStock());
         product.setImagePath(dto.getImagePath());
         product.setTag(dto.getTag());
-        product.setStatus(dto.getStatus());
+        product.setStatus(dto.getStatus() == null ? ProductStatus.ACTIVE : dto.getStatus());
+
         return productRepository.save(product);
     }
 }
