@@ -24,7 +24,7 @@ jobs:
       - name: run maven tests
         run: |
           ls
-          cd apps/mvn
+          cd apps/mvp
           pwd
           mvn -B test
       - name: send test results
