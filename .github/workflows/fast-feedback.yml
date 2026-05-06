@@ -1,0 +1,15 @@
+name: "fast feedback workflow"
+on:
+  push:
+    branches:
+      - feature/**
+jobs:
+  build:
+    runs-on: ubuntu-lastest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6.0.2
+      - name: list files of repository
+        run: |
+          echo "repository contains following files"
+          tree
