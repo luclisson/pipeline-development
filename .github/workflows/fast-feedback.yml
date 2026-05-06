@@ -8,6 +8,11 @@ jobs:
   backend-ci:
     name: backend build and test
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: read
+      issues: read
     steps:
       - name: checkout
         uses: actions/checkout@v6.0.2
@@ -26,8 +31,15 @@ jobs:
           cd apps/mvp
           pwd
           mvn -B test
+      - name: Debug - Wo sind die Test-Reports?
+        if: always() # Wichtig: Muss laufen, auch wenn die Tests rot sind!
+        run: |
+            echo "Inhalt des target-Ordners:"
+            ls -R apps/mvn/target/ || echo "Ordner target existiert nicht!"
+
       - name: send test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: (!cancelled())
         with:
           files: apps/mvn/target/surefire-reports/*.xml
+
