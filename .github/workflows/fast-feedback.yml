@@ -38,19 +38,21 @@ jobs:
   frontend-ci:
     name: frontend build and test
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/frontend
     steps:
       - name: checkout repository
         uses: actions/checkout@v6.0.2
       - name: debugging path
         run: |
           pwd
-          cd apps/frontend
           ls
       - name: setup npm
         uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: npm
+          cache: 'npm'
           cache-dependency-path: './apps/frontend/package-lock.json'
       - name: install dependecies
         run: npm ci
