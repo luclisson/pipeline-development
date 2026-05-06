@@ -52,7 +52,13 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: 'npm'
-          cache-dependency-path: './apps/frontend/package-lock.json'
-      - name: install dependecies
+      - name: install dependencies
         run: npm ci
+      - name: Run React Tests and generate XML
+        run: CI=true npm test -- --reporters=default --reporters=jest-junit
+      - name: Publish Frontend Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          check_name: "React Test Results"
+          files: "**/junit.xml"
