@@ -24,7 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run maven tests
-        run: mvn -B test --file apps/mvn/pom.xml
+        run: |
+          cd apps/mvn
+          pwd
+          mvn -B test
       - name: send test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: (!cancelled())
