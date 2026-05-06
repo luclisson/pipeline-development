@@ -23,7 +23,6 @@ jobs:
           cache: 'maven'
       - name: run maven tests
         run: |
-          ls
           cd apps/mvp
           pwd
           mvn -B test
