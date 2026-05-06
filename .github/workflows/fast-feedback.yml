@@ -31,15 +31,17 @@ jobs:
           cd apps/mvp
           pwd
           mvn -B test
-      - name: Debug - Wo sind die Test-Reports?
-        if: always() # Wichtig: Muss laufen, auch wenn die Tests rot sind!
+      - name: Debug - Wo liegen die XML Dateien wirklich?
+        if: always()
         run: |
-            echo "Inhalt des target-Ordners:"
-            ls -R apps/mvn/target/ || echo "Ordner target existiert nicht!"
+            echo "Aktuelles Verzeichnis: $(pwd)"
+            echo "Gefundene XML-Testberichte:"
+            find . -name "*.xml" | grep "reports" || echo "Keine Reports gefunden!"
 
       - name: send test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: (!cancelled())
         with:
-          files: apps/mvn/target/surefire-reports/*.xml
+          files: | 
+            **/target/surefire-reports/*.xml
 
