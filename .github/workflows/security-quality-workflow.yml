@@ -1,0 +1,11 @@
+name: "security quality workflow"
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  security-scan:
+    name: checkout repository
+    uses: actions/checkout@v6.0.2
