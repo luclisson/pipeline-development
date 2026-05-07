@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['java', 'typescript']
+        language: ['java', 'javascript']
     steps:
     - name: checkout repository
       uses: actions/checkout@v6.0.2
@@ -30,7 +30,13 @@ jobs:
         languages: ${{ matrix.language }}
         queries: security-extended,security-and-quality
 
-    - name: Autobuild
+    - name: Build Java Backend (for CodeQL)
+      if: matrix.language == 'java'
+      working-directory: ./apps/mvp
+      run: mvn clean compile -DskipTests
+
+    - name: Autobuild for Frontend
+      if: matrix.language == 'javascript'
       uses: github/codeql-action/autobuild@v3
 
     - name: Perform CodeQL Analysis
@@ -46,15 +52,16 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v6.0.2
+
       - name: setup node
         uses: actions/setup-node@v6
         with:
           node-version: 24
+
       - name: install node dependencies
         run: |
           npm ci
+
       - name: run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
-          prettier: true
+        run: |
+          npm run lint
