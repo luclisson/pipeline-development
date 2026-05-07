@@ -3,7 +3,11 @@ on:
   push:
     branches:
       - feature/**
-  workflow_dispatch: 
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - main
 jobs:
   backend-ci:
     name: backend build and test
