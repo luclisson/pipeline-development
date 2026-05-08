@@ -63,9 +63,9 @@
 | **Frontend**  | Vite + React            | Latest  | Systemintegratoren    |
 | **Backend**   | Spring Boot             | 3.x     | Systemintegratoren    |
 | **Datenbank** | PostgreSQL              | 15.x    | Entwickler            |
-| **CI/CD**     | GitHub Actions          | –       | Entwickler (Luc Liss) |
+| **CI/CD**     | GitHub Actions          | –       | Entwickler            |
 | **Container** | Docker + Docker Compose | Latest  | Team                  |
-| **Analytics** | Python (geplant)        | –       | Entwickler (Luc Liss) |
+| **Analytics** | Python (geplant)        | –       | Entwickler            |
 
 
 ---
