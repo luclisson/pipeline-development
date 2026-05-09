@@ -25,5 +25,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: build and push docker compose
         run: |
-            docker compose -f docker-compose.yaml build
-            docker compose -f docker-compose.yaml push
+          docker compose -f docker-compose.yaml build
+          docker compose -f docker-compose.yaml push
+        env:
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
+          SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
