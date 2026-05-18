@@ -8,10 +8,11 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
   backend:
-    image: ghcr.io/luclisson/pipeline-development/backend:latest
+    image: ghcr.io/itech-bhh-module/asta-shop-mvp/backend:${TAG}
     build:
       context: ./apps/mvp
       dockerfile: Dockerfile
+    container_name: backend-container
     ports:
       - "8081:8081"
     environment:
@@ -21,10 +22,11 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: ghcr.io/luclisson/pipeline-development/frontend:latest
+    image: ghcr.io/itech-bhh-module/asta-shop-mvp/frontend:${TAG}
     build:
       context: ./apps/frontend
       dockerfile: Dockerfile
+    container_name: frontend-container
     ports:
       - "3000:80"
     depends_on:

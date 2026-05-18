@@ -25,8 +25,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: build and push docker compose
         run: |
-          docker compose -f docker-compose.yaml build
-          docker compose -f docker-compose.yaml push
+          export TAG=${{ github.sha }}
+          docker compose -f docker-compose.yml build --build-arg TAG=$TAG
+          docker compose -f docker-compose.yml push
         env:
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
